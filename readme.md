@@ -2,7 +2,7 @@
 
 ## Инициализация:
 ```abap
-data: lo_date type zcl_date.
+data: lo_date type ref to zcl_date.
 
 lo_date = zcl_date=>create( '20200101' ). " 1 января 2020
 " or
@@ -34,7 +34,7 @@ lo_date = zcl_date=>create(
 ### Пример:
 ```abap
 
-data: lo_date  type zcl_date,
+data: lo_date  type ref to zcl_date,
       lv_dats  type dats,
       lv_month type string.
 
@@ -90,7 +90,7 @@ write lv_month. " January
 
 ```abap
 
-lo_date = zcl_date=>create( '01012020' ). " 01.01.2020
+lo_date = zcl_date=>create( '20200101' ). " 01.01.2020
 
 lo_date->minus( iv_years = 2 ). " 01.01.2018
 lo_date->plus( iv_days = 3 ).   "04.01.2018
@@ -121,13 +121,13 @@ lo_date->plus(
 
 ```abap
 
-data: lo_date     type zcl_date,
+data: lo_date     type ref to zcl_date,
       lv_formated type string.
 
-lo_date = zcl_date=>create( '01012020' ). " 01.01.2020
+lo_date = zcl_date=>create( '20200101' ). " 01.01.2020
 lv_formated = lo_date->to_string( 'Месяц: $m Год: $yyyy День: $dd' ).
 
-write lv_rormated. " Месяц: Январь Год: 2020 День: 01
+write lv_formated. " Месяц: Январь Год: 2020 День: 01
 
 ```
 
@@ -139,15 +139,15 @@ write lv_rormated. " Месяц: Январь Год: 2020 День: 01
 
 ```abap
 
-data: lo_date1 type zcl_date,
-      lo_date2 type zcl_date,
+data: lo_date1 type ref to zcl_date,
+      lo_date2 type ref to zcl_date,
       lv_dats1 type dats,
       lv_dats2 type dats,
       lv_diff_dats type i,
       lv_diff_zcl_d type i.
 
-lv_dats1 = '01012020'.
-lv_dats2 = '20012020'.
+lv_dats1 = '20200120'. " 20.01.2020
+lv_dats2 = '20200101'. " 01.01.2020
 
 lo_date1 = zcl_date=>create( lv_dats1 ).
 lo_date2 = zcl_date=>create( lv_dats2 ).

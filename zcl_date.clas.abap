@@ -183,21 +183,23 @@ CLASS ZCL_DATE IMPLEMENTATION.
 
   METHOD get_month_name_by_number.
     DATA ls_month LIKE LINE OF gt_month_names.
-
+  
     " Есть ли вообще записи для текущего языка?
     READ TABLE gt_month_names
       INTO ls_month
       WITH KEY spras = gv_language.
-
+  
     IF sy-subrc <> 0.
       init_month_names( ).
     ENDIF.
-
+  
     CLEAR ls_month.
     READ TABLE gt_month_names
       INTO ls_month
-      WITH KEY mnr = iv_number.
-
+      WITH KEY
+        mnr   = iv_number
+        spras = gv_language.
+  
     rv_month_name = ls_month-ltx.
   ENDMETHOD.
 
@@ -216,21 +218,23 @@ CLASS ZCL_DATE IMPLEMENTATION.
 
   METHOD get_short_month_name_by_number.
     DATA ls_month LIKE LINE OF gt_month_names.
-
+  
     " Есть ли вообще записи для текущего языка?
     READ TABLE gt_month_names
       INTO ls_month
       WITH KEY spras = gv_language.
-
+  
     IF sy-subrc <> 0.
       init_month_names( ).
     ENDIF.
-
+  
     CLEAR ls_month.
     READ TABLE gt_month_names
       INTO ls_month
-      WITH KEY mnr = iv_number.
-
+      WITH KEY
+        mnr   = iv_number
+        spras = gv_language.
+  
     rv_short_month = ls_month-ktx.
   ENDMETHOD.
 
